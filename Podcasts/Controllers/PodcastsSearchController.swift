@@ -9,10 +9,7 @@ import UIKit
 
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
-    var podcasts = [
-        Podcast(trackName: "Podcasts TableView Controller", artistName: "Joe K."),
-        Podcast(trackName: "UISearchController", artistName: "Some Author")
-    ]
+    var podcasts = [Podcast]()
     
     let cellId = "cellId"
     
@@ -50,6 +47,18 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - UITableView
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please enter a Search Term"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.podcasts.count > 0 ? 0 : 250
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return podcasts.count
     }
@@ -58,10 +67,6 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PodcastCell
         let podcast = self.podcasts[indexPath.row]
         cell.podcast = podcast
-//        let podcast = self.podcasts[indexPath.row]
-//        cell.textLabel?.text = "\(podcast.trackName ?? "")\n\(podcast.artistName ?? "")"
-//        cell.textLabel?.numberOfLines = -1
-//        cell.imageView?.image = #imageLiteral(resourceName: "appicon")
         return cell
     }
     
