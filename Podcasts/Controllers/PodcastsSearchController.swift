@@ -25,6 +25,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     // MARK: - Setup Work
     
     fileprivate func setupSearchBar() {
+//        self.definesPresentationContext = true    // It worked even without this in Xcode 14.1
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.delegate = self
@@ -46,6 +47,13 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     }
     
     // MARK: - UITableView
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let episodesController = EpisodesController()
+        let podcast = podcasts[indexPath.row]
+        episodesController.podcast = podcast
+        navigationController?.pushViewController(episodesController, animated: true)
+    }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
