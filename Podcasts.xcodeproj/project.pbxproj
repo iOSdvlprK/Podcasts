@@ -15,6 +15,7 @@
 		D855683929647CD9003A3E0D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D855683829647CD9003A3E0D /* APIService.swift */; };
 		D861C48D296ABAA700486F57 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = D861C48C296ABAA700486F57 /* SDWebImage */; };
 		D861C48F296AD12000486F57 /* EpisodesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D861C48E296AD12000486F57 /* EpisodesController.swift */; };
+		D861C492296B05BC00486F57 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = D861C491296B05BC00486F57 /* FeedKit */; };
 		D8D16F352963368900B32F1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D16F342963368900B32F1D /* AppDelegate.swift */; };
 		D8D16F372963368900B32F1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D16F362963368900B32F1D /* SceneDelegate.swift */; };
 		D8D16F392963368900B32F1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D16F382963368900B32F1D /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D861C492296B05BC00486F57 /* FeedKit in Frameworks */,
 				D861C48D296ABAA700486F57 /* SDWebImage in Frameworks */,
 				D855683629644905003A3E0D /* Alamofire in Frameworks */,
 			);
@@ -143,6 +145,7 @@
 			packageProductDependencies = (
 				D855683529644905003A3E0D /* Alamofire */,
 				D861C48C296ABAA700486F57 /* SDWebImage */,
+				D861C491296B05BC00486F57 /* FeedKit */,
 			);
 			productName = Podcasts;
 			productReference = D8D16F312963368900B32F1D /* Podcasts.app */;
@@ -175,6 +178,7 @@
 			packageReferences = (
 				D855683429644905003A3E0D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D861C48B296ABAA700486F57 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				D861C490296B05BC00486F57 /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = D8D16F322963368900B32F1D /* Products */;
 			projectDirPath = "";
@@ -448,6 +452,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		D861C490296B05BC00486F57 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -460,6 +472,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D861C48B296ABAA700486F57 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		D861C491296B05BC00486F57 /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D861C490296B05BC00486F57 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
