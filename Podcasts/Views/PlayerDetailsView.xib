@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="zcV-Jp-kvT" customClass="PlayerDetailsView" customModule="Podcasts" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ce5-O7-uY3">
+                    <rect key="frame" x="24" y="59" width="345" height="735"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxU-pA-wxf">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="nbF-Zb-wXT"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Dismiss"/>
+                            <connections>
+                                <action selector="handleDismiss:" destination="zcV-Jp-kvT" eventType="touchUpInside" id="fEi-hD-Jmf"/>
+                            </connections>
+                        </button>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appicon" translatesAutoresizingMaskIntoConstraints="NO" id="0lH-8y-ht1">
+                            <rect key="frame" x="0.0" y="44" width="345" height="345"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="0lH-8y-ht1" secondAttribute="height" id="vbW-Sw-ajV"/>
+                            </constraints>
+                        </imageView>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="DsY-o3-bCR">
+                            <rect key="frame" x="-2" y="389" width="349" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="EN9-Us-XLT"/>
+                            </constraints>
+                        </slider>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEx-Nf-eKO">
+                            <rect key="frame" x="0.0" y="425" width="345" height="310"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="WKx-xf-0YO"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="WKx-xf-0YO" firstAttribute="bottom" secondItem="ce5-O7-uY3" secondAttribute="bottom" constant="24" id="LLU-mE-pAw"/>
+                <constraint firstItem="ce5-O7-uY3" firstAttribute="top" secondItem="WKx-xf-0YO" secondAttribute="top" id="M5s-5J-v52"/>
+                <constraint firstItem="WKx-xf-0YO" firstAttribute="trailing" secondItem="ce5-O7-uY3" secondAttribute="trailing" constant="24" id="ZfV-x2-As5"/>
+                <constraint firstItem="ce5-O7-uY3" firstAttribute="leading" secondItem="WKx-xf-0YO" secondAttribute="leading" constant="24" id="cjL-1t-vd3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="episodeImageView" destination="0lH-8y-ht1" id="cKj-ST-y9k"/>
+                <outlet property="titleLabel" destination="vEx-Nf-eKO" id="DIo-Je-26T"/>
+            </connections>
+            <point key="canvasLocation" x="242" y="78"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="appicon" width="60" height="60"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
