@@ -36,13 +36,44 @@ class PlayerDetailsView: UIView {
         return avPlayer
     }()
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let time = CMTimeMake(value: 1, timescale: 3)
+        let times = [NSValue(time: time)]
+        player.addBoundaryTimeObserver(forTimes: times, queue: .main) {
+            print("Episode started playing")
+            self.enlargeEpisodeImageView()
+        }
+    }
+    
     // MARK: - IB Actions and Outlets
     
     @IBAction func handleDismiss(_ sender: Any) {
         self.removeFromSuperview()
     }
     
-    @IBOutlet weak var episodeImageView: UIImageView!
+    fileprivate func enlargeEpisodeImageView() {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1) {
+            self.episodeImageView.transform = .identity
+        }
+    }
+    
+    fileprivate let shrunkenTransform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+    
+    fileprivate func shrinkEpisodeImageView() {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1) {
+            self.episodeImageView.transform = self.shrunkenTransform
+        }
+    }
+    
+    @IBOutlet weak var episodeImageView: UIImageView! {
+        didSet {
+            episodeImageView.layer.cornerRadius = 5
+            episodeImageView.clipsToBounds = true
+            episodeImageView.transform = shrunkenTransform
+        }
+    }
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.numberOfLines = 2
@@ -62,9 +93,11 @@ class PlayerDetailsView: UIView {
         if player.timeControlStatus == .paused {
             player.play()
             playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            enlargeEpisodeImageView()
         } else {
             player.pause()
             playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+            shrinkEpisodeImageView()
         }
     }
     
