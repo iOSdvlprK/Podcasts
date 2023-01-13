@@ -30,6 +30,7 @@
 		D8D16F3E2963368A00B32F1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D16F3D2963368A00B32F1D /* Assets.xcassets */; };
 		D8D16F412963368A00B32F1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8D16F3F2963368A00B32F1D /* LaunchScreen.storyboard */; };
 		D8D16F49296337AE00B32F1D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D16F48296337AE00B32F1D /* MainTabBarController.swift */; };
+		D8EF38EC29708BFD00563BDC /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF38EB29708BFD00563BDC /* CMTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		D8D16F402963368A00B32F1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8D16F422963368A00B32F1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8D16F48296337AE00B32F1D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		D8EF38EB29708BFD00563BDC /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			children = (
 				D8400F42296D924C00CB8722 /* RSSFeed.swift */,
 				D8400F40296D8FD500CB8722 /* String.swift */,
+				D8EF38EB29708BFD00563BDC /* CMTime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				D8D16F49296337AE00B32F1D /* MainTabBarController.swift in Sources */,
 				D855683029641E70003A3E0D /* PodcastsSearchController.swift in Sources */,
 				D8D16F372963368900B32F1D /* SceneDelegate.swift in Sources */,
+				D8EF38EC29708BFD00563BDC /* CMTime.swift in Sources */,
 				D861C48F296AD12000486F57 /* EpisodesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -36,8 +36,29 @@ class PlayerDetailsView: UIView {
         return avPlayer
     }()
     
+    fileprivate func observePlayerCurrentTime() {
+        let interval = CMTimeMake(value: 1, timescale: 2)
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { time in
+            self.currentTimeLabel.text = time.toDisplayString()
+            let durationTime = self.player.currentItem?.duration
+            self.durationLabel.text = durationTime?.toDisplayString()
+            
+            self.updateCurrentTimeSlider()
+        }
+    }
+    
+    fileprivate func updateCurrentTimeSlider() {
+        let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
+        let durationSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTime(value: 1, timescale: 1))
+        let percentage = currentTimeSeconds / durationSeconds
+        
+        self.currentTimeSlider.value = Float(percentage)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        observePlayerCurrentTime()
         
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
@@ -48,6 +69,10 @@ class PlayerDetailsView: UIView {
     }
     
     // MARK: - IB Actions and Outlets
+    
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var currentTimeSlider: UISlider!
     
     @IBAction func handleDismiss(_ sender: Any) {
         self.removeFromSuperview()
@@ -86,7 +111,6 @@ class PlayerDetailsView: UIView {
             playPauseButton.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
         }
     }
-    
     
     @objc func handlePlayPause() {
         print("Trying to play and pause")

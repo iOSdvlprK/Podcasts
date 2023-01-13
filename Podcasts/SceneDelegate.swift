@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appearance.configureWithDefaultBackground()
         appearance.backgroundColor = .clear
         
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
         
         return appearance
     }

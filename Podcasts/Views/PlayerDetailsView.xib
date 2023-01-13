@@ -25,7 +25,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Dismiss">
                                 <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="baseForegroundColor" systemColor="labelColor"/>
                             </buttonConfiguration>
                             <connections>
                                 <action selector="handleDismiss:" destination="zcV-Jp-kvT" eventType="touchUpInside" id="fEi-hD-Jmf"/>
@@ -37,7 +37,7 @@
                                 <constraint firstAttribute="width" secondItem="0lH-8y-ht1" secondAttribute="height" id="vbW-Sw-ajV"/>
                             </constraints>
                         </imageView>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="DsY-o3-bCR">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="DsY-o3-bCR">
                             <rect key="frame" x="-2" y="409" width="349" height="37"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="EN9-Us-XLT"/>
@@ -46,16 +46,16 @@
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ky4-ak-3JU">
                             <rect key="frame" x="0.0" y="455" width="345" height="22"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yT4-Sd-b9s">
-                                    <rect key="frame" x="0.0" y="0.0" width="273" height="22"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yT4-Sd-b9s">
+                                    <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="22"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="88:88:88" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dk-08-l2Y">
-                                    <rect key="frame" x="273" y="0.0" width="72" height="22"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dk-08-l2Y">
+                                    <rect key="frame" x="41.333333333333343" y="0.0" width="303.66666666666663" height="22"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -93,7 +93,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="Bwt-SM-od3"/>
                                     </constraints>
-                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Button" image="rewind15"/>
                                 </button>
@@ -106,7 +106,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="54" id="H30-hn-whs"/>
                                     </constraints>
-                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Button" image="play"/>
                                 </button>
@@ -119,7 +119,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="NZP-Xo-ewy"/>
                                     </constraints>
-                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Button" image="fastforward15"/>
                                 </button>
@@ -166,11 +166,14 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="authorLabel" destination="wx0-Pg-pah" id="xsO-Gl-rxh"/>
+                <outlet property="currentTimeLabel" destination="yT4-Sd-b9s" id="JRt-P9-7pj"/>
+                <outlet property="currentTimeSlider" destination="DsY-o3-bCR" id="klZ-Nc-kw6"/>
+                <outlet property="durationLabel" destination="8Dk-08-l2Y" id="CLD-8c-aqs"/>
                 <outlet property="episodeImageView" destination="0lH-8y-ht1" id="cKj-ST-y9k"/>
                 <outlet property="playPauseButton" destination="Yzc-zV-LWh" id="kt1-iw-LCA"/>
                 <outlet property="titleLabel" destination="vEx-Nf-eKO" id="DIo-Je-26T"/>
             </connections>
-            <point key="canvasLocation" x="240.80000000000001" y="75.562218890554732"/>
+            <point key="canvasLocation" x="240.76923076923077" y="75.355450236966817"/>
         </view>
     </objects>
     <resources>
@@ -180,6 +183,9 @@
         <image name="muted_volume" width="32.5" height="32.5"/>
         <image name="play" width="59" height="59"/>
         <image name="rewind15" width="45.5" height="45.5"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
