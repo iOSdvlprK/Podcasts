@@ -38,12 +38,14 @@ class PlayerDetailsView: UIView {
     
     fileprivate func observePlayerCurrentTime() {
         let interval = CMTimeMake(value: 1, timescale: 2)
-        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { time in
-            self.currentTimeLabel.text = time.toDisplayString()
-            let durationTime = self.player.currentItem?.duration
-            self.durationLabel.text = durationTime?.toDisplayString()
+        
+        // break the retain cycle - FIX: [weak self]
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
+            self?.currentTimeLabel.text = time.toDisplayString()
+            let durationTime = self?.player.currentItem?.duration
+            self?.durationLabel.text = durationTime?.toDisplayString()
             
-            self.updateCurrentTimeSlider()
+            self?.updateCurrentTimeSlider()
         }
     }
     
@@ -62,9 +64,12 @@ class PlayerDetailsView: UIView {
         
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
-        player.addBoundaryTimeObserver(forTimes: times, queue: .main) {
+        
+        // player has a reference to self
+        // self has a reference to player -> retain cycle FIX: [weak self]
+        player.addBoundaryTimeObserver(forTimes: times, queue: .main) { [weak self] in
             print("Episode started playing")
-            self.enlargeEpisodeImageView()
+            self?.enlargeEpisodeImageView()
         }
         
         setupAudioSession()
@@ -77,6 +82,10 @@ class PlayerDetailsView: UIView {
         } catch let audioSessionErr {
             print("AVAudioSession setup error:", audioSessionErr)
         }
+    }
+    
+    deinit {
+        print("PlayerDetailsView memory being reclaimed...")
     }
     
     // MARK: - IB Actions and Outlets
