@@ -66,9 +66,50 @@ class PlayerDetailsView: UIView {
             print("Episode started playing")
             self.enlargeEpisodeImageView()
         }
+        
+        setupAudioSession()
+    }
+    
+    fileprivate func setupAudioSession() {
+        let audioSession = AVAudioSession()
+        do {
+            try audioSession.setCategory(.playback, options: .defaultToSpeaker)
+        } catch let audioSessionErr {
+            print("AVAudioSession setup error:", audioSessionErr)
+        }
     }
     
     // MARK: - IB Actions and Outlets
+    
+    @IBAction func handleCurrentTimeSliderChange(_ sender: Any) {
+        print("Slider value:", currentTimeSlider.value)
+        
+        let percentage = currentTimeSlider.value
+        guard let duration = player.currentItem?.duration else { return }
+        let durationInSeconds = CMTimeGetSeconds(duration)
+        guard !(durationInSeconds.isNaN || durationInSeconds.isInfinite) else { return }
+        let seekTimeInSeconds = Float64(percentage) * durationInSeconds
+//        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: Int32(NSEC_PER_SEC))
+//        print("NSEC_PER_SEC: ", NSEC_PER_SEC)
+        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1000000000)
+        player.seek(to: seekTime)
+    }
+    
+    @IBAction func handleRewind(_ sender: Any) {
+        seekToCurrentTime(delta: -15)
+    }
+    @IBAction func handleFastForward(_ sender: Any) {
+        seekToCurrentTime(delta: 15)
+    }
+    fileprivate func seekToCurrentTime(delta: Float64) {
+        let fifteenSeconds = CMTimeMakeWithSeconds(delta, preferredTimescale: Int32(NSEC_PER_SEC))
+        let seekTime = CMTimeAdd(player.currentTime(), fifteenSeconds)
+        player.seek(to: seekTime)
+    }
+    
+    @IBAction func handleVolumeChange(_ sender: UISlider) {
+        player.volume = sender.value
+    }
     
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
