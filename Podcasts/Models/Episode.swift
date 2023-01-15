@@ -8,7 +8,7 @@
 import Foundation
 import FeedKit
 
-struct Episode {
+struct Episode: Equatable {
     let title: String
     let pubDate: Date
     let description: String
@@ -23,5 +23,9 @@ struct Episode {
         self.author = feedItem.iTunes?.iTunesAuthor ?? ""
         self.imageUrl = feedItem.iTunes?.iTunesImage?.attributes?.href
         self.streamUrl = feedItem.enclosure?.attributes?.url ?? ""
+    }
+    
+    static func ==(lhs: Episode, rhs: Episode) -> Bool {
+        return lhs.title == rhs.title && lhs.pubDate == rhs.pubDate && lhs.description == rhs.description && lhs.author == rhs.author && lhs.streamUrl == rhs.streamUrl
     }
 }

@@ -11,6 +11,9 @@ import AVKit
 class PlayerDetailsView: UIView {
     var episode: Episode! {
         didSet {
+            // skip if the same episode is loaded
+            guard oldValue != episode else { return }
+            
             titleLabel.text = episode.title
             authorLabel.text = episode.author
             
@@ -60,6 +63,8 @@ class PlayerDetailsView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
+        
         observePlayerCurrentTime()
         
         let time = CMTimeMake(value: 1, timescale: 3)
@@ -82,6 +87,11 @@ class PlayerDetailsView: UIView {
         } catch let audioSessionErr {
             print("AVAudioSession setup error:", audioSessionErr)
         }
+    }
+    
+    @objc func handleTapMaximize() {
+        let mainTabBarController = window?.rootViewController as? MainTabBarController
+        mainTabBarController?.maximizePlayerDetails(episode: nil)
     }
     
     static func initFromNib() -> PlayerDetailsView {
@@ -129,7 +139,9 @@ class PlayerDetailsView: UIView {
     @IBOutlet weak var currentTimeSlider: UISlider!
     
     @IBAction func handleDismiss(_ sender: Any) {
-        self.removeFromSuperview()
+//        self.removeFromSuperview()
+        let mainTabBarController = window?.rootViewController as? MainTabBarController
+        mainTabBarController?.minimizePlayerDetails()
     }
     
     fileprivate func enlargeEpisodeImageView() {
