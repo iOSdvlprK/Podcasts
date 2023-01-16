@@ -62,10 +62,14 @@ class PlayerDetailsView: UIView {
         self.currentTimeSlider.value = Float(percentage)
     }
     
+    var panGesture: UIPanGestureRecognizer!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        addGestureRecognizer(panGesture)
         
         observePlayerCurrentTime()
         
@@ -82,6 +86,39 @@ class PlayerDetailsView: UIView {
         setupAudioSession()
     }
     
+    @objc func handlePan(gesture: UIPanGestureRecognizer) {
+        if gesture.state == .changed {
+            handlePanChanged(gesture: gesture)
+        } else if gesture.state == .ended {
+            handlePanEnded(gesture: gesture)
+        }
+    }
+    
+    func handlePanChanged(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        self.miniPlayerView.alpha = 1 + translation.y / 200
+        self.maximizedStackView.alpha = -translation.y / 200
+    }
+    
+    func handlePanEnded(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        let velocity = gesture.velocity(in: self.superview)
+        print("Ended:", velocity.y)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.transform = .identity
+            if translation.y < -200 || velocity.y < -500 {
+                let mainTabBarController = self.window?.rootViewController as? MainTabBarController
+                mainTabBarController?.maximizePlayerDetails(episode: nil)
+                gesture.isEnabled = false
+            } else {
+                self.miniPlayerView.alpha = 1
+                self.maximizedStackView.alpha = 0
+            }
+        })
+    }
+    
     fileprivate func setupAudioSession() {
         let audioSession = AVAudioSession()
         do {
@@ -94,6 +131,7 @@ class PlayerDetailsView: UIView {
     @objc func handleTapMaximize() {
         let mainTabBarController = window?.rootViewController as? MainTabBarController
         mainTabBarController?.maximizePlayerDetails(episode: nil)
+        panGesture.isEnabled = false
     }
     
     static func initFromNib() -> PlayerDetailsView {
@@ -162,6 +200,7 @@ class PlayerDetailsView: UIView {
 //        self.removeFromSuperview()
         let mainTabBarController = window?.rootViewController as? MainTabBarController
         mainTabBarController?.minimizePlayerDetails()
+        panGesture.isEnabled = true
     }
     
     fileprivate func enlargeEpisodeImageView() {
