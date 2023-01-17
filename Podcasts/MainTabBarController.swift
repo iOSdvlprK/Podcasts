@@ -33,7 +33,10 @@ class MainTabBarController: UITabBarController {
         })
     }
     
+    var episode: Episode?
     func maximizePlayerDetails(episode: Episode?) {
+        guard self.episode != episode else { return }
+        
         minimizedTopAnchorConstraint.isActive = false
         maximizedTopAnchorConstraint.isActive = true
         maximizedTopAnchorConstraint.constant = 0
@@ -42,6 +45,8 @@ class MainTabBarController: UITabBarController {
         if episode != nil { // play another new episode
             playerDetailsView.episode = episode
             playerDetailsView.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            playerDetailsView.miniPlayPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            self.episode = episode
         }
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
