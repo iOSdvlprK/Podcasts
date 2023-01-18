@@ -34,7 +34,7 @@ class MainTabBarController: UITabBarController {
     }
     
     var episode: Episode?
-    func maximizePlayerDetails(episode: Episode?) {
+    func maximizePlayerDetails(episode: Episode?, playlistEpisodes: [Episode] = []) {
         guard self.episode != episode else { return }
         
         minimizedTopAnchorConstraint.isActive = false
@@ -48,6 +48,8 @@ class MainTabBarController: UITabBarController {
             playerDetailsView.miniPlayPauseButton.setImage(UIImage(named: "pause"), for: .normal)
             self.episode = episode
         }
+        
+        playerDetailsView.playlistEpisodes = playlistEpisodes
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             

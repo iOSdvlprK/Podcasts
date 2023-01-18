@@ -70,20 +70,8 @@ class PlayerDetailsView: UIView {
             self?.durationLabel.text = durationTime?.toDisplayString()
             
             self?.updateCurrentTimeSlider()
-//            self?.setupLockscreenCurrentTime()
         }
     }
-    
-//    fileprivate func setupLockscreenCurrentTime() {
-//        var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo
-//        // some modifications here
-//        guard let currentItem = player.currentItem else { return }
-//        let elapsedTime = CMTimeGetSeconds(player.currentTime())
-//        let durationInSeconds = CMTimeGetSeconds(currentItem.duration)
-//        nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedTime
-//        nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = durationInSeconds
-//        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
-//    }
     
     fileprivate func updateCurrentTimeSlider() {
         let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
@@ -145,7 +133,6 @@ class PlayerDetailsView: UIView {
         setupGestures()
         
         observePlayerCurrentTime()
-        
         observeBoundaryTime()
         
         setupAudioSession()
@@ -217,10 +204,56 @@ class PlayerDetailsView: UIView {
         
         commandCenter.togglePlayPauseCommand.isEnabled = true
         commandCenter.togglePlayPauseCommand.addTarget { _ -> MPRemoteCommandHandlerStatus in
-            
             self.handlePlayPause()
             return .success
         }
+        
+        commandCenter.nextTrackCommand.addTarget { _ in
+            self.handleNextTrack()
+            return .success
+        }
+        commandCenter.previousTrackCommand.addTarget { _ in
+            self.handlePrevTrack()
+            return .success
+        }
+    }
+    
+    var playlistEpisodes = [Episode]()
+    
+    fileprivate func handlePrevTrack() {
+        if playlistEpisodes.count == 0 {
+            return
+        }
+
+        let currentEpisodeIndex = playlistEpisodes.firstIndex { ep in
+            return self.episode.title == ep.title && self.episode.author == ep.author
+        }
+        guard let index = currentEpisodeIndex else { return }
+        let nextEpisode: Episode
+        if index == 0 {
+            nextEpisode = playlistEpisodes[playlistEpisodes.count - 1]
+        } else {
+            nextEpisode = playlistEpisodes[index - 1]
+        }
+        self.episode = nextEpisode
+    }
+    
+    fileprivate func handleNextTrack() {
+        if playlistEpisodes.count == 0 {
+            return
+        }
+        
+        let currentEpisodeIndex = playlistEpisodes.firstIndex { ep in
+            return self.episode.title == ep.title && self.episode.author == ep.author
+        }
+        guard let index = currentEpisodeIndex else { return }
+        let nextEpisode: Episode
+        if index == playlistEpisodes.count - 1 {
+            nextEpisode = playlistEpisodes[0]
+        } else {
+            nextEpisode = playlistEpisodes[index + 1]
+        }
+        self.episode = nextEpisode
     }
     
     fileprivate func setupElapsedTime() {
