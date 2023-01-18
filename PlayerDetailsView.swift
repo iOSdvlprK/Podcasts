@@ -7,6 +7,7 @@
 
 import UIKit
 import AVKit
+import MediaPlayer
 
 class PlayerDetailsView: UIView {
     var episode: Episode! {
@@ -109,6 +110,7 @@ class PlayerDetailsView: UIView {
         }
         
         setupAudioSession()
+        setupRemoteControl()
     }
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
@@ -144,11 +146,44 @@ class PlayerDetailsView: UIView {
     }
     
     fileprivate func setupAudioSession() {
-        let audioSession = AVAudioSession()
         do {
-            try audioSession.setCategory(.playback, options: .defaultToSpeaker)
-        } catch let audioSessionErr {
-            print("AVAudioSession setup error:", audioSessionErr)
+            try AVAudioSession.sharedInstance().setCategory(.playback, options: .defaultToSpeaker)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch let sessionErr {
+            print("Failed to activate session:", sessionErr)
+        }
+    }
+    
+    fileprivate func setupRemoteControl() {
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { _ -> MPRemoteCommandHandlerStatus in
+            self.player.play()
+            self.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            self.miniPlayPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            return .success
+        }
+        
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget { _ -> MPRemoteCommandHandlerStatus in
+            self.player.pause()
+            self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+            self.miniPlayPauseButton.setImage(UIImage(named: "play"), for: .normal)
+            return .success
+        }
+        
+        commandCenter.togglePlayPauseCommand.isEnabled = true
+        commandCenter.togglePlayPauseCommand.addTarget { _ -> MPRemoteCommandHandlerStatus in
+            
+//            if self.player.timeControlStatus == .playing {
+//                self.player.pause()
+//            } else {
+//                self.player.play()
+//            }
+            self.handlePlayPause()
+            return .success
         }
     }
     
