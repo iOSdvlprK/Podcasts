@@ -32,6 +32,7 @@
 		D8D16F412963368A00B32F1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8D16F3F2963368A00B32F1D /* LaunchScreen.storyboard */; };
 		D8D16F49296337AE00B32F1D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D16F48296337AE00B32F1D /* MainTabBarController.swift */; };
 		D8EF38EC29708BFD00563BDC /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF38EB29708BFD00563BDC /* CMTime.swift */; };
+		D8F30A2F297994500085B772 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F30A2E297994500085B772 /* FavoritesController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		D8D16F422963368A00B32F1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8D16F48296337AE00B32F1D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D8EF38EB29708BFD00563BDC /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
+		D8F30A2E297994500085B772 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesController.swift; path = Podcasts/FavoritesController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		D855682E29641E44003A3E0D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D8F30A2E297994500085B772 /* FavoritesController.swift */,
 				D861C48E296AD12000486F57 /* EpisodesController.swift */,
 				D855682F29641E70003A3E0D /* PodcastsSearchController.swift */,
 			);
@@ -257,6 +260,7 @@
 				D8400F41296D8FD500CB8722 /* String.swift in Sources */,
 				D855683329641F73003A3E0D /* Podcast.swift in Sources */,
 				D8D16F49296337AE00B32F1D /* MainTabBarController.swift in Sources */,
+				D8F30A2F297994500085B772 /* FavoritesController.swift in Sources */,
 				D855683029641E70003A3E0D /* PodcastsSearchController.swift in Sources */,
 				D8D16F372963368900B32F1D /* SceneDelegate.swift in Sources */,
 				D8EF38EC29708BFD00563BDC /* CMTime.swift in Sources */,
