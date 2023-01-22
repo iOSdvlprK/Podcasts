@@ -7,9 +7,7 @@
 
 import Foundation
 
-class Podcast: NSObject, Decodable, NSSecureCoding {
-    
-    static var supportsSecureCoding: Bool { return true }
+class Podcast: NSObject, Decodable, NSCoding {
     
     func encode(with coder: NSCoder) {
         print("Trying to transform Podcast into Data")
