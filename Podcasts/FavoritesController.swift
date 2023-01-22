@@ -19,6 +19,15 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
         setupCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        podcasts = UserDefaults.standard.savedPodcasts()
+        collectionView.reloadData()
+        
+        // ⚠️ badgeValue won't disappear when active
+        (view.window?.rootViewController as? MainTabBarController)?.viewControllers?[0].tabBarItem.badgeValue = nil
+    }
+    
     fileprivate func setupCollectionView() {
         collectionView.backgroundColor = .systemBackground
         collectionView.register(FavoritePodcastCell.self, forCellWithReuseIdentifier: cellId)
@@ -46,6 +55,13 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     // MARK: - UICollectionView Delegate / Spacing Methods
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let episodesController = EpisodesController()
+        episodesController.podcast = self.podcasts[indexPath.item]
+        
+        navigationController?.pushViewController(episodesController, animated: true)
+    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return podcasts.count
