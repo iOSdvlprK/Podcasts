@@ -34,6 +34,14 @@ class DownloadsController: UITableViewController {
     
     // MARK: - UITableView
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Launch episode player")
+        let episode = self.episodes[indexPath.row]
+        
+        let mainTabBarController = view.window?.rootViewController as? MainTabBarController
+        mainTabBarController?.maximizePlayerDetails(episode: episode, playlistEpisodes: self.episodes)
+    }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let episode = self.episodes[indexPath.row]
         episodes.remove(at: indexPath.row)

@@ -15,6 +15,7 @@ struct Episode: Equatable, Codable {
     let author: String
     var imageUrl: String?
     var streamUrl: String
+    var fileUrl: String?
     
     init(feedItem: RSSFeedItem) {
         self.title = feedItem.title ?? ""
