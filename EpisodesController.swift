@@ -88,12 +88,29 @@ class EpisodesController: UITableViewController {
         mainTabBarController?.viewControllers?[0].tabBarItem.badgeValue = "New"
     }
     
+    fileprivate func showDownloadBadgeHighlight() {
+        let mainTabBarController = view.window?.rootViewController as? MainTabBarController
+        mainTabBarController?.viewControllers?[2].tabBarItem.badgeValue = "New"
+    }
+    
     fileprivate func setupTableView() {
         let nib = UINib(nibName: "EpisodeCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellId)
     }
     
     // MARK: - UITableView
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let downloadAction = UIContextualAction(style: .normal, title: "Download") { _, _, _ in
+            print("Downloading episode into UserDefaults")
+            let episode = self.episodes[indexPath.row]
+            UserDefaults.standard.downloadEpisode(episode: episode)
+            self.showDownloadBadgeHighlight()
+        }
+        downloadAction.image = UIImage(systemName: "square.and.arrow.down")
+        let swipeConfig = UISwipeActionsConfiguration(actions: [downloadAction])
+        return swipeConfig
+    }
     
     // showing activity indicator view while fetching data
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

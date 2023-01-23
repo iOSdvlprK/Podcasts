@@ -35,6 +35,7 @@
 		D8EF38EC29708BFD00563BDC /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF38EB29708BFD00563BDC /* CMTime.swift */; };
 		D8F30A2F297994500085B772 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F30A2E297994500085B772 /* FavoritesController.swift */; };
 		D8F30A312979A6E90085B772 /* FavoritePodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F30A302979A6E90085B772 /* FavoritePodcastCell.swift */; };
+		D8F3B954297E49FA00E78003 /* DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F3B953297E49FA00E78003 /* DownloadsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		D8EF38EB29708BFD00563BDC /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
 		D8F30A2E297994500085B772 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesController.swift; path = Podcasts/FavoritesController.swift; sourceTree = SOURCE_ROOT; };
 		D8F30A302979A6E90085B772 /* FavoritePodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritePodcastCell.swift; path = Podcasts/Controllers/FavoritePodcastCell.swift; sourceTree = SOURCE_ROOT; };
+		D8F3B953297E49FA00E78003 /* DownloadsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			children = (
 				D8F30A2E297994500085B772 /* FavoritesController.swift */,
 				D861C48E296AD12000486F57 /* EpisodesController.swift */,
+				D8F3B953297E49FA00E78003 /* DownloadsController.swift */,
 				D855682F29641E70003A3E0D /* PodcastsSearchController.swift */,
 			);
 			path = Controllers;
@@ -262,6 +265,7 @@
 				D8034338296C81C80006B0F4 /* EpisodeCell.swift in Sources */,
 				D8034335296C80550006B0F4 /* Episode.swift in Sources */,
 				D8400F47296DDE3700CB8722 /* PlayerDetailsView.swift in Sources */,
+				D8F3B954297E49FA00E78003 /* DownloadsController.swift in Sources */,
 				D8D16F352963368900B32F1D /* AppDelegate.swift in Sources */,
 				D8400F41296D8FD500CB8722 /* String.swift in Sources */,
 				D855683329641F73003A3E0D /* Podcast.swift in Sources */,
