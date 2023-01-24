@@ -46,10 +46,20 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JsW-NQ-ccj">
+                        <rect key="frame" x="27.666666666666664" y="90.333333333333329" width="76.666666666666686" height="34.666666666666671"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="JsW-NQ-ccj" firstAttribute="centerY" secondItem="HNs-c2-ISo" secondAttribute="centerY" id="BrQ-ge-b6f"/>
                     <constraint firstItem="HNs-c2-ISo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="EFS-0q-Ib3"/>
                     <constraint firstItem="HNs-c2-ISo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ElR-88-52i"/>
+                    <constraint firstItem="JsW-NQ-ccj" firstAttribute="centerX" secondItem="HNs-c2-ISo" secondAttribute="centerX" id="f9R-2Y-jL0"/>
                     <constraint firstAttribute="trailing" secondItem="0gO-2W-kPT" secondAttribute="trailing" id="j2q-dy-B14"/>
                     <constraint firstItem="0gO-2W-kPT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qPd-JD-86B"/>
                     <constraint firstItem="0gO-2W-kPT" firstAttribute="leading" secondItem="HNs-c2-ISo" secondAttribute="trailing" constant="16" id="qSo-p2-ggO"/>
@@ -59,6 +69,7 @@
             <connections>
                 <outlet property="descriptionLabel" destination="7zb-2j-K37" id="4Mf-ly-pMi"/>
                 <outlet property="episodeImageView" destination="HNs-c2-ISo" id="ufU-cs-PQE"/>
+                <outlet property="progressLabel" destination="JsW-NQ-ccj" id="Z43-07-a4x"/>
                 <outlet property="pubDateLabel" destination="urF-xd-JED" id="ek3-xO-c7y"/>
                 <outlet property="titleLabel" destination="dvF-b0-AJE" id="bFP-PA-eqq"/>
             </connections>

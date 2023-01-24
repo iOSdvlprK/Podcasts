@@ -9,8 +9,14 @@ import Foundation
 import Alamofire
 import FeedKit
 
+extension Notification.Name {
+    static let downloadProgress = Notification.Name("downloadProgress")
+    static let downloadComplete = Notification.Name("downloadComplete")
+}
+
 class APIService {
     
+    typealias EpisodeDownloadCompleteTuple = (fileUrl: String, episodeTitle: String)
     let baseiTunesSearchURL = "https://itunes.apple.com/search"
     
     // singleton
@@ -22,7 +28,9 @@ class APIService {
         let downloadRequest = DownloadRequest.suggestedDownloadDestination()
         
         AF.download(episode.streamUrl, to: downloadRequest).downloadProgress { progress in
-            print(progress.fractionCompleted)
+//            print(progress.fractionCompleted)
+            // notify DownloadsController about the download progress somehow
+            NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title, "progress": progress.fractionCompleted])
         }.response { resp in
             print(resp.fileURL?.absoluteString ?? "")
             
@@ -37,6 +45,9 @@ class APIService {
             } catch let err {
                 print("Failed to encode downloaded episodes with file url update:", err)
             }
+            
+            let episodeDownloadComplete = EpisodeDownloadCompleteTuple(resp.fileURL?.absoluteString ?? "", episode.title)
+            NotificationCenter.default.post(name: .downloadComplete, object: episodeDownloadComplete, userInfo: nil)
         }
     }
     
