@@ -38,8 +38,18 @@ class DownloadsController: UITableViewController {
         print("Launch episode player")
         let episode = self.episodes[indexPath.row]
         
-        let mainTabBarController = view.window?.rootViewController as? MainTabBarController
-        mainTabBarController?.maximizePlayerDetails(episode: episode, playlistEpisodes: self.episodes)
+        if episode.fileUrl != nil {
+            let mainTabBarController = view.window?.rootViewController as? MainTabBarController
+            mainTabBarController?.maximizePlayerDetails(episode: episode, playlistEpisodes: self.episodes)
+        } else {
+            let alertController = UIAlertController(title: "File URL not found", message: "Cannot find local file, play using stream url instead", preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                let mainTabBarController = self.view.window?.rootViewController as? MainTabBarController
+                mainTabBarController?.maximizePlayerDetails(episode: episode, playlistEpisodes: self.episodes)
+            }))
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            present(alertController, animated: true)
+        }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
